@@ -1,0 +1,7 @@
+= RatPack
+
+Collection of helpers for sinatra mainly for links, css, js, images, and form stuff.
+
+== Copyright
+
+Copyright (c) 2009 brianthecoder. See LICENSE for details.
