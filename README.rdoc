@@ -1,6 +1,6 @@
 = RatPack
 
-Collection of helpers for sinatra mainly for links, css, js, images, and form stuff.
+Collection of helpers for sinatra mainly for links, css, js, images, and form stuff. Most of this was stolen/modified from merb. Much love to the merb-core team. Peace.
 
 == Copyright
 
