@@ -19,14 +19,9 @@ Collection of helpers for sinatra mainly for links, css, js, images, and form st
 * button
 * submit
 
-==== Coming Soon
+=== Routing helpers
 
-Need to figure out how to detect rendering engine
-
-* form
-* fieldset
-* better partial
-
+* subdomains - takes tld length as an arg
 
 === Html Helpers
 
@@ -38,6 +33,14 @@ Need to figure out how to detect rendering engine
 * open_tag
 * close_tag
 * self_closing_tag
+
+==== Coming Soon
+
+Need to figure out how to detect rendering engine
+
+* form
+* fieldset
+* better partial
 
 == Copyright
 
