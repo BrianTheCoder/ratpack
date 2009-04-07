@@ -2,14 +2,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ratpack}
-  s.version = "0.0.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["brianthecoder"]
-  s.date = %q{2009-04-06}
+  s.date = %q{2009-04-07}
   s.email = %q{wbsmith83@gmail.com}
   s.extra_rdoc_files = ["README.rdoc", "LICENSE"]
-  s.files = ["README.rdoc", "lib/ratpack", "lib/ratpack/forms.rb", "lib/ratpack/html_helpers.rb", "lib/ratpack/tag.rb", "lib/ratpack.rb", "lib/sinatra", "lib/sinatra/helpers.rb", "test/ratpack_test.rb", "test/test_helper.rb", "LICENSE"]
+  s.files = ["README.rdoc", "VERSION.yml", "lib/ratpack", "lib/ratpack/forms.rb", "lib/ratpack/html_helpers.rb", "lib/ratpack/routes.rb", "lib/ratpack/tag.rb", "lib/ratpack.rb", "lib/sinatra", "lib/sinatra/ratpack.rb", "test/ratpack_test.rb", "test/test_helper.rb", "LICENSE"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/BrianTheCoder/ratpack}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
