@@ -1,5 +1,5 @@
 module Sinatra
-  module Helpers
+  module Ratpack
     def self.registered(app)
       app.helpers RatPack::Tag
       app.helpers RatPack::HtmlHelpers  
@@ -7,5 +7,5 @@ module Sinatra
     end
   end
   
-  register Helpers
+  register Ratpack
 end # Sinatra

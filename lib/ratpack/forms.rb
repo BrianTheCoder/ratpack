@@ -80,17 +80,17 @@ module RatPack
       self_closing_tag(:input, attrs)
     end
     
-    def form(attrs = {}, &blk)
-      captured = @origin.capture(&blk)
-      fake_method_tag = process_form_attrs(attrs)
-      tag(:form, fake_method_tag + captured, attrs)
-    end
-
-    def fieldset(attrs, &blk)
-      legend = (l_attr = attrs.delete(:legend)) ? tag(:legend, l_attr) : ""
-      tag(:fieldset, legend + @origin.capture(&blk), attrs)
-      # @origin.concat(contents, blk.binding)
-    end
+    # def form(attrs = {}, &blk)
+    #   captured = @origin.capture(&blk)
+    #   fake_method_tag = process_form_attrs(attrs)
+    #   tag(:form, fake_method_tag + captured, attrs)
+    # end
+    # 
+    # def fieldset(attrs, &blk)
+    #   captured = @origin.capture(&blk)
+    #   legend = (l_attr = attrs.delete(:legend)) ? tag(:legend, l_attr) : ""
+    #   tag(:fieldset, legend + captured, attrs)
+    # end
     
     private
 

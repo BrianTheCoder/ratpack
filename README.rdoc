@@ -2,6 +2,43 @@
 
 Collection of helpers for sinatra mainly for links, css, js, images, and form stuff. Most of this was stolen/modified from merb. Much love to the merb-core team. Peace.
 
+== What's included
+
+=== Forms
+
+* text_field
+* password_field
+* hidden_field
+* password_field
+* check_box
+* radio_button
+* radio_group - same as above but takes an array of names
+* text_area
+* label
+* select
+* button
+* submit
+
+==== Coming Soon
+
+Need to figure out how to detect rendering engine
+
+* form
+* fieldset
+* better partial
+
+
+=== Html Helpers
+
+* link_to
+* js_link - only accepts one file name
+* css_link - only accepts one file name
+* partial - specify template parser via :template param, defaults to erb looks for partials in a views/partials
+* tag
+* open_tag
+* close_tag
+* self_closing_tag
+
 == Copyright
 
 Copyright (c) 2009 brianthecoder. See LICENSE for details.
