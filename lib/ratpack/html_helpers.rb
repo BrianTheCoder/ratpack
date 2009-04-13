@@ -1,5 +1,9 @@
 module RatPack
-  module HtmlHelpers    
+  module HtmlHelpers  
+    def pluralize(str,num)
+      num.to_i > 1 ? str.plural : str.singular
+    end
+      
     def link_to(name, url, options = {})
       defaults = {:href => url}
       tag(:a,name,defaults.merge(options))

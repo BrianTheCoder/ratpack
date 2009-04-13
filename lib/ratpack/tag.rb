@@ -2,7 +2,7 @@ module RatPack
   module Tag    
     def tag(name, contents = nil, attrs = {}, &block)
       attrs, contents = contents, nil if contents.is_a?(Hash)
-      contents = capture(&block) if block_given?
+      # contents = capture(&block) if block_given?
       open_tag(name, attrs) + contents.to_s + close_tag(name)
     end
 

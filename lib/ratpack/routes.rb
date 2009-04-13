@@ -7,6 +7,6 @@ module RatPack
                       else
                         []
                       end
-      end
+    end
   end
 end

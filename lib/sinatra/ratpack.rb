@@ -1,17 +1,12 @@
 module Sinatra
-  module Ratpack
-    module Helpers
-      include RatPack::Tag
-      include RatPack::HtmlHelpers  
-      include RatPack::Forms
-      include RatPack::Routes
-    end
-    
+  module RatPack
     def self.registered(app)
-      puts 'loading ratpack'
-      app.helpers Helpers
+      app.helpers ::RatPack::Tag
+      app.helpers ::RatPack::HtmlHelpers
+      app.helpers ::RatPack::Routes
+      app.helpers ::RatPack::Forms
     end
   end
   
-  register Ratpack
+  register RatPack
 end # Sinatra
