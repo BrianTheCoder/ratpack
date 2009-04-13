@@ -2,10 +2,10 @@ module RatPack
   module Forms
     def error_messages_for(obj = nil, opts = {})
       return unless obj.respond_to?(:errors)
+      return if obj.errors.blank?
       html = tag(:h2, "Form submission failed be cause of #{obj.errors.size} #{pluralize("error",obj.errors.size)}")
-      obj.errors.each do |field,msg|
-        html << tag(:li,msg)
-      end
+      msgs = obj.errors.map{|error| error.map{|msg| tag(:li,msg)}}.flatten
+      tag(:div, html + tag(:ul,msgs), :class => "error")
     end
     
     %w(text password hidden file).each do |kind|
@@ -62,12 +62,12 @@ module RatPack
     private
     
     def form_field(type, content, attrs)
-      attrs[:id] = attrs[:name] unless attrs.has_key?(:id)
+      attrs[:id] = attrs[:name].gsub(/(\[)(.+?)\]$/,'_\2') unless attrs.has_key?(:id)
       build_field(attrs) + tag(type, content, attrs)
     end
     
     def closed_form_field(type, attrs)
-      attrs[:id] = attrs[:name] unless attrs.has_key?(:id)
+      attrs[:id] = attrs[:name].gsub(/(\[)(.+?)\]$/,'_\2') unless attrs.has_key?(:id)
       build_field(attrs) + self_closing_tag(type, attrs)
     end
     
