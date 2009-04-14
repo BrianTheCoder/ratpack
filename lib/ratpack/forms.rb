@@ -11,7 +11,7 @@ module RatPack
     %w(text password hidden file).each do |kind|
       self.class_eval <<-RUBY, __FILE__, __LINE__ + 1
         def #{kind}_field(attrs)
-          attrs[:class] = "text" if %w(text password).include?("#{kind}")         
+          attrs[:class] = "text" if %w(text password).include?("#{kind}") && !attrs.has_key?(:class)         
           closed_form_field(:input, {:type => "#{kind}"}.merge(attrs))
         end
       RUBY
@@ -38,13 +38,17 @@ module RatPack
     end
     
     def check_box(attrs)
+      html = ""
+      label = build_field(attrs)
       if attrs.delete(:boolean)
         on, off = attrs.delete(:on), attrs.delete(:off)
-        hidden_field(:name => attrs[:name], :value => off) <<
-          closed_form_field(:input, {:type => "checkbox", :value => on}.merge(attrs))
+        html << hidden_field(:name => attrs[:name], :value => off)
+        html << self_closing_tag(:input, {:type => "checkbox", :value => on}.merge(attrs))
       else
         closed_form_field(:input, {:type => "checkbox"}.merge(attrs))
+        html << self_closing_tag(:input, {:type => "checkbox"}.merge(attrs))
       end
+      html + label
     end
     
     def select(attrs = {})
@@ -52,9 +56,16 @@ module RatPack
       form_field(:select, options_for(attrs), attrs)
     end
     
-    def submit(value, attrs = {})
+    def submit(value="Submit", attrs = {})
       attrs[:type]  ||= "submit"
       attrs[:name]  ||= "submit"
+      attrs[:value] ||= value
+      closed_form_field(:input, attrs)
+    end
+    
+    def reset(value="Reset", attrs = {})
+      attrs[:type]  ||= "reset"
+      attrs[:name]  ||= "reset"
       attrs[:value] ||= value
       closed_form_field(:input, attrs)
     end
