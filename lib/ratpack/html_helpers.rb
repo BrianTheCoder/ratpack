@@ -10,7 +10,8 @@ module RatPack
     end
     
     def image_tag(file,attrs = {})
-      defaults = {:src => "/images/#{file}"}
+      file = "/images/#{file}" unless remote_asset?(file)
+      defaults = {:src => file }  
       self_closing_tag(:img,defaults.merge(options))
     end
 
