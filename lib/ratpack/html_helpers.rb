@@ -9,7 +9,7 @@ module RatPack
       tag(:a,name,defaults.merge(options))
     end
     
-    def image_tag(file,attrs = {})
+    def image_tag(file, options = {})
       defaults = {:src => "/images/#{file}"}
       self_closing_tag(:img,defaults.merge(options))
     end
