@@ -1,5 +1,4 @@
-module DateAndTimeFormatting
-  
+module DateAndTimeFormatting  
   def self.included(base)
     base.class_eval do
       include DateAndTimeFormatting::InstanceMethods

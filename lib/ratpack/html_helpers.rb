@@ -29,19 +29,15 @@ module RatPack
     end
     
     def partial(template, opts = {})
-      template_engine = opts.delete(:template) || :erb
+      engine = opts.delete(:template) || :erb
       opts.merge!(:layout => false)
-      template = :"partials/#{template}"
+      path = :"partials/#{template}"
       if collection = opts.delete(:collection) then
-        collection.inject([]) do |buffer, member|
-          buffer << send(template_engine,template, opts.merge(
-                                    :layout => false, 
-                                    :locals => {template.to_sym => member}
-                                  )
-                       )
+        collection.map do |member|
+          send(engine,path, opts.merge(:locals => {template.to_sym => member}))
         end.join("\n")
       else
-        send(template_engine,template, opts)
+        send(engine,path, opts)
       end
     end
     

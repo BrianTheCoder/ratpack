@@ -3,7 +3,7 @@ module RatPack
     def error_messages_for(obj = nil, opts = {})
       return unless obj.respond_to?(:errors)
       return if obj.errors.blank?
-      html = tag(:h2, "Form submission failed be cause of #{obj.errors.size} #{pluralize("error",obj.errors.size)}")
+      html = tag(:h2, "Form submission failed because of #{obj.errors.size} #{pluralize("error",obj.errors.size)}")
       msgs = obj.errors.map{|error| error.map{|msg| tag(:li,msg)}}.flatten
       tag(:div, html + tag(:ul,msgs), :class => "error")
     end
@@ -40,6 +40,7 @@ module RatPack
     def check_box(attrs)
       html = ""
       label = build_field(attrs)
+      attrs[:checked] = "checked" if attrs[:checked]
       if attrs.delete(:boolean)
         on, off = attrs.delete(:on), attrs.delete(:off)
         html << hidden_field(:name => attrs[:name], :value => off)
@@ -73,13 +74,17 @@ module RatPack
     private
     
     def form_field(type, content, attrs)
-      attrs[:id] = attrs[:name].gsub(/(\[)(.+?)\]$/,'_\2') unless attrs.has_key?(:id)
+      attrs[:id] = sanitize_name(attrs[:name]) unless attrs.has_key?(:id)
       build_field(attrs) + tag(type, content, attrs)
     end
     
     def closed_form_field(type, attrs)
-      attrs[:id] = attrs[:name].gsub(/(\[)(.+?)\]$/,'_\2') unless attrs.has_key?(:id)
+      attrs[:id] = sanitize_name(attrs[:name]) unless attrs.has_key?(:id)
       build_field(attrs) + self_closing_tag(type, attrs)
+    end
+    
+    def sanitize_name(name)
+      name.gsub(/\[\]$/,'').gsub(/(\[)(.+?)\]$/,'_\2')
     end
     
     def build_field(attrs)

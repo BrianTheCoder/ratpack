@@ -5,6 +5,7 @@ module Sinatra
       app.helpers ::RatPack::HtmlHelpers
       app.helpers ::RatPack::Routes
       app.helpers ::RatPack::Forms
+      app.helpers ::RatPack::DateAndTime
     end
   end
   
